@@ -1,0 +1,33 @@
+{
+  "name": "wd201_l4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "todo.js",
+  "scripts": {
+    "test": "jest",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SangiReddy0706/wd201_week4.git"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint",
+      "prettier --write ."
+    ]
+  },
+  "author": "sangi reddy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SangiReddy0706/wd201_week4/issues"
+  },
+  "homepage": "https://github.com/SangiReddy0706/wd201_week4#readme",
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "husky": "^8.0.2",
+    "jest": "^29.3.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
+  }
+}
