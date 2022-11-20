@@ -1,5 +1,8 @@
 /* eslint-disable no-undef */
 const todoList = require("../todo");
+
+let today = new Date().toLocaleDateString("en-CA");
+
 const { all, markAsCompleted, add, overdue, dueToday, dueLater } = todoList();
 
 describe("To Do List Test Suite", () => {
@@ -28,39 +31,32 @@ describe("To Do List Test Suite", () => {
   });
 
   test("Checking overdue", () => {
-    let arr = overdue();
-    let datet = new Date();
-    let check = true;
-    for (let c = 0; c < arr.length; c++) {
-      let over = new Date(arr[c].dueDate);
-      if (over.getDate() > datet.getDate()) {
-        check = false;
-      }
-    }
-    expect(check).toBe(true);
+    let listtotodos = overdue();
+
+    expect(
+      listtotodos.every((todo) => {
+        return todo.dueDate < today;
+      })
+    ).toBe(true);
   });
-  test("Checking due today", () => {
-    let arr = dueToday();
-    let datet = new Date();
-    let check = true;
-    for (let c = 0; c < arr.length; c++) {
-      let over = new Date(arr[c].dueDate);
-      if (over.getDate() != datet.getDate()) {
-        check = false;
-      }
-    }
-    expect(check).toBe(true);
+
+  test("Checking dueToday", () => {
+    let listtotodos = dueToday();
+
+    expect(
+      listtotodos.every((todo) => {
+        return todo.dueDate == today;
+      })
+    ).toBe(true);
   });
+
   test("Checking dueLater", () => {
-    let arr = dueLater();
-    let datet = new Date();
-    let check = true;
-    for (let c = 0; c < arr.length; c++) {
-      let over = new Date(arr[c].dueDate);
-      if (over.getDate() < datet.getDate()) {
-        check = false;
-      }
-    }
-    expect(check).toBe(true);
+    let listtotodos = dueLater();
+
+    expect(
+      listtotodos.every((todo) => {
+        return todo.dueDate > today;
+      })
+    ).toBe(true);
   });
 });
